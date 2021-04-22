@@ -1,0 +1,34 @@
+extends layouts/default.pug
+
+block content
+    div(class="d-flex justify-content-end")
+        - var currentPath = "/test/"+data["_id"]+"/"
+        div(class="btn-group mb-3" role="group")
+            - var buttons = [{name: "Editar", path: "editar", cls: "primary", method:"get"}, {name: "Eliminar", path: "eliminar", cls:"danger", method:"post"}]
+            each btn in buttons
+                form(action=currentPath+btn.path method=btn.method)
+                    input(type="submit" class="ms-2 btn btn-"+btn.cls value=btn.name)
+    ol(class="list-group shadow-sm")
+        li(class="list-group-item d-flex align-items-start active bg-dark border-dark" aria-current="true")
+            div(class="ms-2 me-auto")
+                div(class="fw-bold") ID
+                div= data["_id"]
+        li(class="list-group-item d-flex align-items-start")
+            div(class="ms-2 me-auto")
+                div(class="fw-bold") Nombre
+                div= data.nombreCompleto.apellido.paterno + " " + data.nombreCompleto.apellido.materno + " " + data.nombreCompleto.nombre
+        li(class="list-group-item d-flex align-items-start")
+            div(class="ms-2 me-auto")
+                div(class="fw-bold") Edad
+                div= data.edad
+        li(class="list-group-item d-flex align-items-start")
+            div(class="ms-2 me-auto")
+                div(class="fw-bold") Municipio
+                div= data.municipio
+        li(class="list-group-item d-flex align-items-start")
+            div(class="ms-2 me-auto")
+                div(class="fw-bold") Tipo de prueba
+                if data.tipoPrueba
+                    div= data.tipoPrueba
+                else
+                    div Ninguna

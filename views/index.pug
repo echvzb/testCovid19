@@ -1,0 +1,17 @@
+extends layouts/default.pug
+
+block content
+    h2 Pruebas registradas
+    table(class="table shadow table-bordered table-hover my-5")
+        thead(class="table-light")
+            tr
+                - var headers = ["Nombre", "Municipio", "Prueba"]
+                each header in headers
+                    th(scope="col")= header
+        tbody
+            each elem in data
+                tr
+                    td
+                        a(href="/test/"+ elem["_id"] class="link-dark")= elem.nombreCompleto.apellido.paterno + " " + elem.nombreCompleto.apellido.materno + " " + elem.nombreCompleto.nombre
+                    td= elem.municipio
+                    td= elem.tipoPrueba
