@@ -16,7 +16,7 @@ app
 
 app
     .use(express.json())
-    .use(express.urlencoded({ extended: true }))
+    .use(express.urlencoded({ extended: true }));
 
 app
     .get("/", routes.index)
@@ -31,6 +31,6 @@ app
 app
     .post("/test/:test/eliminar", routes.registro.delete);
 
-app.listen(port, ()=>{
-    console.log("Server listen on port:", port);
-})
+app.listen(port, () => {
+    console.log("Server is listening on port:", port);
+});
