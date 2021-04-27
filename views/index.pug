@@ -15,3 +15,5 @@ block content
                         a(href="/test/"+ elem["_id"] class="link-dark")= elem.nombreCompleto.apellido.paterno + " " + elem.nombreCompleto.apellido.materno + " " + elem.nombreCompleto.nombre
                     td= elem.municipio
                     td= elem.tipoPrueba
+    if query.done
+        include includes/toast.pug

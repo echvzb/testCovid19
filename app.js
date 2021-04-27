@@ -1,5 +1,5 @@
 const express = require("express");
-const connectDB = require("./db/connectdb");
+const connectDB = require("./db/connect");
 
 if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 
@@ -22,11 +22,11 @@ app
     .get("/", routes.index)
     .get("/registro", routes.registro.get)
     .get("/test/:test", routes.userInfo)
-    .get("/test/:test/editar", routes.editarTest.get);
+    .get("/test/:test/editar", routes.editar.get);
 
 app
     .post("/registro", routes.registro.post)
-    .post("/test/:test/editar", routes.editarTest.post);
+    .post("/test/:test/editar", routes.editar.post);
 
 app
     .post("/test/:test/eliminar", routes.registro.delete);

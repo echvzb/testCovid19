@@ -21,9 +21,9 @@ function parseData(data){
                 tipoPrueba
            };
 }
-function createTest (data){
+function createTest(data){
     const newUser = new User(parseData(data));
-    return newUser.save()
+    return newUser.save();
 }
 function findAllTestData(){
     return User

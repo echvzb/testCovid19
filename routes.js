@@ -1,10 +1,10 @@
-const { test } = require("./db/dbOperations");
+const { test } = require("./db/operations");
 const links = [
                 {
                     name: "Registrar",
                     path: "/registro",
                 },
-              ]
+              ];
 const redPath = (op, id) => `/?done=${op}&test=${id}`;
 
 function registroGet(req, res){
@@ -25,20 +25,19 @@ function registroPost(req, res){
     promise.then(data => {
         console.log("\nTest created:\n", data);
         res.redirect(redPath("create", data["_id"]));
-    })
+    });
 }
-
 function index(req, res){
     const promise = test.findAll();
     promise.then(data => {
         res.render("index",{
             title: "Tests COVID-19 | echvzb",
+            query: req.query,
             links,
             data
         });
     });
 }
-
 function userInfo(req, res){
     const promise = test.findOne(req.params.test);
     promise.then(data => {
@@ -46,10 +45,9 @@ function userInfo(req, res){
             title: `${data.nombreCompleto.apellido.paterno} ${data.nombreCompleto.apellido.materno} ${data.nombreCompleto.nombre} - Test COVID-19`,
             links,
             data
-        })
-    })
+        });
+    });
 }
-
 function editarTestGet(req, res){
     const promise = test.findOne(req.params.test);
     promise.then(data => {
@@ -65,14 +63,14 @@ function editarTestPost(req, res){
     promise.then(data => {
         console.log("\nTest updated:\n", data);
         res.redirect(redPath("update", req.params.test));
-    })
+    });
 }
 function registroDelete(req, res){
     const promise = test.delete(req.params.test);
     promise.then(data =>{
         console.log("\nTest deleted\n:", data);
         res.redirect(redPath("delete",req.params.test));
-    })
+    });
 }
 module.exports = {
     index,
@@ -82,7 +80,7 @@ module.exports = {
         delete: registroDelete,
     },
     userInfo,
-    editarTest:{
+    editar:{
         get: editarTestGet,
         post: editarTestPost
     },

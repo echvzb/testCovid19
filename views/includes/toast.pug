@@ -1,0 +1,12 @@
+- const styles = {create: {css: "success", txt: "creada"}, update: {css: "primary", txt: "actualizada"}, delete:{css: "danger", txt:"eliminada"}}
+- const txt = "Prueba "+styles[query.done].txt
+div(class="toast-container bot-0 end-0 position-absolute p-3")
+    div(class="toast" role="alert" aria-live="assertive" aria-atomic="true")
+        div(class="toast-header text-white bg-"+styles[query.done].css)
+            strong(class="me-auto")= txt
+            button(type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close")
+        div(class="toast-body")
+            strong ID: 
+            span= query.test
+script(type="module")
+    include ../src/scripts/toast.js
